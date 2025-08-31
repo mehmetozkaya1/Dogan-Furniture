@@ -202,16 +202,11 @@
       const foot = document.createElement('div');
       foot.className = 'mt-auto d-flex justify-content-between align-items-center';
 
-      const price = document.createElement('strong');
-      price.className = 'fs-5';
-      price.textContent = p.price || 'Fiyat için iletişime geçin';
-
       const btn = document.createElement('a');
       btn.className = 'btn btn-hero';
       btn.href = `product.html?id=${p.id}`;
       btn.textContent = 'Detay';
 
-      foot.appendChild(price);
       foot.appendChild(btn);
 
       body.appendChild(h);
