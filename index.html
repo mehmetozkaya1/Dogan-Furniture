@@ -20,10 +20,16 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
+    .page-wrapper {
+      overflow-x: hidden;
+      width: 100%;
+    }
+    /* Genel Navbar Geçiş Efekti */
     .navbar {
       transition: background-color 0.3s ease;
     }
 
+    /* === MASAÜSTÜ GÖRÜNÜMÜ (992px ve üzeri) === */
     @media (min-width: 992px) {
       .navbar-logo-container {
         position: absolute;
@@ -62,21 +68,14 @@
         background-color: transparent !important;
       }
 
-      .navbar-brand-text {
-        margin-top: 10px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #555;
-        letter-spacing: 0.5px;
-      }
-
+      /* Sadece masaüstünde geçerli */
       .navbar-collapse {
-        display: flex;
+        display: flex !important;
         justify-content: space-between;
         align-items: center;
         width: 100%;
       }
-      
+
       .navbar-nav-left {
         display: flex;
         justify-content: flex-start;
@@ -91,10 +90,10 @@
       }
     }
 
+    /* === MOBİL GÖRÜNÜM === */
     .navbar-brand-mobile {
       font-weight: 600;
     }
-
     .navbar-brand-mobile img {
       height: 40px;
       width: auto;
@@ -104,223 +103,270 @@
       margin-right: 10px !important;
     }
 
-    .card-link { text-decoration: none; color: inherit; }
+    /* Mobilde menü düzgün görünsün */
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background-color: #fff; /* açılan menü beyaz arkaplan */
+        padding: 1rem;
+      }
+      .navbar-nav .nav-item {
+        margin: 0.5rem 0;
+      }
+    }
+
+    /* === GENEL TASARIM === */
+    .card-link { 
+      text-decoration: none; 
+      color: inherit; 
+    }
 
     .showcase .showcase-content h2,
-    .showcase .showcase-content p {
-      color: #fff;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    .showcase .showcase-content p { 
+      color: #fff; 
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6); 
     }
 
-    .feature-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 4rem;
-      height: 4rem;
-      margin-bottom: 1rem;
-      font-size: 2rem;
-      color: var(--color-primary);
-      background-color: #eef5fc;
-      border-radius: 50%;
+    .feature-icon { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      width: 4rem; 
+      height: 4rem; 
+      margin-bottom: 1rem; 
+      font-size: 2rem; 
+      color: var(--color-primary); 
+      background-color: #eef5fc; 
+      border-radius: 50%; 
     }
 
-    .category-card { position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-    .category-card img { width: 100%; height: 350px; object-fit: cover; transition: transform 0.4s ease; }
-    .category-card:hover img { transform: scale(1.1); }
-    .category-card .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); display: flex; align-items: flex-end; padding: 1.5rem; }
-    .category-card .card-title { color: #fff; font-weight: 600; font-size: 1.5rem; }
+    .category-card { 
+      position: relative; 
+      overflow: hidden; 
+      border-radius: 15px; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+    }
+    .category-card img { 
+      width: 100%; 
+      height: 350px; 
+      object-fit: cover; 
+      transition: transform 0.4s ease; 
+    }
+    .category-card:hover img { 
+      transform: scale(1.1); 
+    }
+    .category-card .card-overlay { 
+      position: absolute; 
+      inset: 0; 
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); 
+      display: flex; 
+      align-items: flex-end; 
+      padding: 1.5rem; 
+    }
+    .category-card .card-title { 
+      color: #fff; 
+      font-weight: 600; 
+      font-size: 1.5rem; 
+    }
 
-    .cta-section { padding: 6rem 0; background-color: var(--color-dark); color: var(--color-light); }
+    .cta-section { 
+      padding: 6rem 0; 
+      background-color: var(--color-dark); 
+      color: var(--color-light); 
+    }
 
     @media (max-width: 768px) {
-      .hero, .showcase { background-attachment: scroll;}
+      .hero, .showcase { 
+        background-attachment: scroll;
+      }
     }
+
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg fixed-top bg-light shadow-sm">
-    <div class="container">
-      <a class="navbar-brand navbar-brand-mobile d-lg-none" href="index.html">
-        <img src="logo/logo.png" alt="Doğan Furniture Logo">
-        Doğan Furniture
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="navbar-logo-container d-none d-lg-flex">
-        <a class="navbar-brand-centered" href="index.html">
+  <div class="page-wrapper">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand navbar-brand-mobile d-lg-none" href="index.html">
           <img src="logo/logo.png" alt="Doğan Furniture Logo">
+          Doğan Furniture
         </a>
-      </div>
-      
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav navbar-nav-left">
-          <li class="nav-item"><a class="nav-link" href="#about">Hakkımızda</a></li>
-          <li class="nav-item"><a class="nav-link" href="products.html">Ürünlerimiz</a></li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Galeri</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
-        </ul>
-      </div>
 
-    </div>
-  </nav>
-
-  <section class="hero" id="home" data-aos="fade-in">
-    <div class="hero-content" data-aos="zoom-in" data-aos-delay="200">
-      <h1 class="display-4 mb-3">Hayalinizdeki Yaşam Alanları</h1>
-      <p class="lead mb-4" style="color: white;">Kalite, estetik ve konforu bir araya getiren modern mobilya tasarımları.</p>
-      <a href="#one-cikan-urunler" class="btn btn-hero">Şimdi Keşfet</a>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-md-6" data-aos="fade-right">
-          <img src="images/orta_masa/IMG-20250724-WA0017.jpg" class="img-fluid rounded shadow-sm" alt="Doğan Furniture Hakkında">
-        </div>
-        <div class="col-md-6" data-aos="fade-left">
-          <h2>Doğan Furniture Hakkında</h2>
-          <p>Ankara Siteler'de yılların tecrübesiyle mobilya sektörüne yön veren Doğan Furniture olarak, her zevke ve ihtiyaca uygun, yenilikçi ve kaliteli ürünler tasarlıyoruz. Müşteri memnuniyetini temel ilke edinerek, evlerinize sadece mobilya değil, aynı zamanda mutluluk ve konfor katmayı hedefliyoruz.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-light" id="one-cikan-urunler">
-    <div class="container">
-      <h2 class="text-center mb-5" data-aos="fade-up">Öne Çıkan Ürünlerimiz</h2>
-      <div class="row g-4" id="product-list">
-      </div>
-      <div class="text-center mt-5" data-aos="fade-up">
-        <a href="products.html" class="btn btn-hero">Tüm Koleksiyonu Gör</a>
-      </div>
-    </div>
-  </section>
-  
-  <section id="features">
-    <div class="container">
-      <h2 class="text-center mb-5" data-aos="fade-up">Bizi Farklı Kılan Nedir?</h2>
-      <div class="row text-center g-4">
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="feature-icon"><i class="bi bi-gem"></i></div>
-          <h3>Birinci Sınıf Kalite</h3>
-          <p>Ürünlerimizde yalnızca en dayanıklı malzemeleri ve usta işçiliği kullanarak uzun ömürlü mobilyalar üretiyoruz.</p>
-        </div>
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="feature-icon"><i class="bi bi-palette-fill"></i></div>
-          <h3>Özgün Tasarım</h3>
-          <p>Modern trendleri takip eden, estetik ve fonksiyonelliği bir araya getiren özgün tasarımlarımızla fark yaratıyoruz.</p>
-        </div>
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="feature-icon"><i class="bi bi-person-check-fill"></i></div>
-          <h3>Müşteri Memnuniyeti</h3>
-          <p>Tasarım aşamasından teslimata kadar her adımda sizin memnuniyetinizi önceliklendiriyor, hayallerinizi gerçekleştiriyoruz.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="showcase" style="background-image:url('images/orta_masa/IMG-20250724-WA0021.jpg');">
-    <div class="showcase-content text-center" data-aos="fade-up">
-      <h2 class="display-5">Modern Çizgiler</h2>
-      <p class="lead">Yaşam alanlarınıza değer katan minimalist ve şık tasarımlarla tanışın.</p>
-    </div>
-  </section>
-
-  <section id="categories" class="bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5" data-aos="fade-up">Kategorileri Keşfedin</h2>
-      <div class="row g-4">
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <a href="products.html" class="d-block card-link">
-            <div class="card category-card">
-              <img src="images/kanepe/IMG-20250724-WA0022.jpg" alt="Oturma Grupları">
-              <div class="card-overlay"><h4 class="card-title">Oturma Grupları</h4></div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <a href="products.html" class="d-block card-link">
-            <div class="card category-card">
-              <img src="images/yemek_seti/IMG-20250724-WA0035.jpg" alt="Yemek Odaları">
-              <div class="card-overlay"><h4 class="card-title">Yemek Odaları</h4></div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section class="showcase" style="background-image:url('images/konsol/WhatsApp\ Image\ 2025-08-30\ at\ 22.51.14\ \(4\).jpeg');">
-    <div class="showcase-content text-center" data-aos="fade-up">
-      <h2 class="display-5">Kalite ve Konfor</h2>
-      <p class="lead">Birinci sınıf kumaşlar ve ergonomik tasarımlarla duyularınızı şımartın.</p>
-    </div>
-  </section>
-  
-  <section class="cta-section text-center">
-    <div class="container" data-aos="fade-up">
-      <h2 class="display-5 mb-3">Hayalinizdeki Evi Birlikte Tasarlayalım</h2>
-      <p class="lead mb-4">Size özel çözümler ve tasarımlar hakkında bilgi almak için bizimle iletişime geçin.</p>
-      <a href="contact.html" class="btn btn-hero">Teklif Alın</a>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container text-center">
-      <p>&copy; 2025 Doğan Furniture. Tüm hakları saklıdır.</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="products-data.js"></script>
-
-  <script>
-    AOS.init({ duration: 800, once: true });
-
-    window.addEventListener('scroll', function() {
-      if (window.innerWidth > 768) { 
-        document.querySelectorAll('.showcase').forEach(function(section) {
-          let speed = 0.4;
-          let yPos = (window.pageYOffset - section.offsetTop) * speed;
-          section.style.backgroundPosition = 'center ' + yPos + 'px';
-        });
-      }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const productListContainer = document.getElementById('product-list');
-      if (typeof PRODUCTS !== 'undefined' && productListContainer) {
-        const productIds = Object.keys(PRODUCTS);
-        const featuredProductIds = productIds.slice(0, 4); 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         
-        let content = '';
-        featuredProductIds.forEach((id, index) => {
-          const product = PRODUCTS[id];
-          content += `
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="${index * 100}">
-              <a href="product.html?id=${product.id}" class="card-link">
-                <div class="card h-100">
-                  <img src="${product.images[0]}" class="card-img-top" alt="${product.title}" style="height: 250px; object-fit: cover;">
-                  <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${product.title}</h5>
-                    <p class="card-text flex-grow-1">${product.short}</p>
+        <div class="navbar-logo-container d-none d-lg-flex">
+          <a class="navbar-brand-centered" href="index.html">
+            <img src="logo/logo.png" alt="Doğan Furniture Logo">
+          </a>
+        </div>
+        
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav navbar-nav-left">
+            <li class="nav-item"><a class="nav-link" href="#about">Hakkımızda</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Ürünlerimiz</a></li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item"><a class="nav-link" href="gallery.html">Galeri</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
+    <section class="hero" id="home" data-aos="fade-in">
+      <div class="hero-content" data-aos="zoom-in" data-aos-delay="200">
+        <h1 class="display-4 mb-3">Hayalinizdeki Yaşam Alanları</h1>
+        <p class="lead mb-4" style="color: white;">Kalite, estetik ve konforu bir araya getiren modern mobilya tasarımları.</p>
+        <a href="#one-cikan-urunler" class="btn btn-hero">Şimdi Keşfet</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-md-6" data-aos="fade-right">
+            <img src="images/orta_masa/IMG-20250724-WA0017.jpg" class="img-fluid rounded shadow-sm" alt="Doğan Furniture Hakkında">
+          </div>
+          <div class="col-md-6" data-aos="fade-left">
+            <h2>Doğan Furniture Hakkında</h2>
+            <p>Ankara Siteler'de yılların tecrübesiyle mobilya sektörüne yön veren Doğan Furniture olarak, her zevke ve ihtiyaca uygun, yenilikçi ve kaliteli ürünler tasarlıyoruz. Müşteri memnuniyetini temel ilke edinerek, evlerinize sadece mobilya değil, aynı zamanda mutluluk ve konfor katmayı hedefliyoruz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-light" id="one-cikan-urunler">
+      <div class="container">
+        <h2 class="text-center mb-5" data-aos="fade-up">Öne Çıkan Ürünlerimiz</h2>
+        <div class="row g-4" id="product-list">
+        </div>
+        <div class="text-center mt-5" data-aos="fade-up">
+          <a href="products.html" class="btn btn-hero">Tüm Koleksiyonu Gör</a>
+        </div>
+      </div>
+    </section>
+    
+    <section id="features">
+      <div class="container">
+        <h2 class="text-center mb-5" data-aos="fade-up">Bizi Farklı Kılan Nedir?</h2>
+        <div class="row text-center g-4">
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon"><i class="bi bi-gem"></i></div>
+            <h3>Birinci Sınıf Kalite</h3>
+            <p>Ürünlerimizde yalnızca en dayanıklı malzemeleri ve usta işçiliği kullanarak uzun ömürlü mobilyalar üretiyoruz.</p>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon"><i class="bi bi-palette-fill"></i></div>
+            <h3>Özgün Tasarım</h3>
+            <p>Modern trendleri takip eden, estetik ve fonksiyonelliği bir araya getiren özgün tasarımlarımızla fark yaratıyoruz.</p>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon"><i class="bi bi-person-check-fill"></i></div>
+            <h3>Müşteri Memnuniyeti</h3>
+            <p>Tasarım aşamasından teslimata kadar her adımda sizin memnuniyetinizi önceliklendiriyor, hayallerinizi gerçekleştiriyoruz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase" style="background-image:url('images/orta_masa/IMG-20250724-WA0021.jpg');">
+      <div class="showcase-content text-center" data-aos="fade-up">
+        <h2 class="display-5">Modern Çizgiler</h2>
+        <p class="lead">Yaşam alanlarınıza değer katan minimalist ve şık tasarımlarla tanışın.</p>
+      </div>
+    </section>
+
+    <section id="categories" class="bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5" data-aos="fade-up">Kategorileri Keşfedin</h2>
+        <div class="row g-4">
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <a href="products.html" class="d-block card-link">
+              <div class="card category-card">
+                <img src="images/kanepe/IMG-20250724-WA0022.jpg" alt="Oturma Grupları">
+                <div class="card-overlay"><h4 class="card-title">Oturma Grupları</h4></div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <a href="products.html" class="d-block card-link">
+              <div class="card category-card">
+                <img src="images/yemek_seti/IMG-20250724-WA0035.jpg" alt="Yemek Odaları">
+                <div class="card-overlay"><h4 class="card-title">Yemek Odaları</h4></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="showcase" style="background-image:url('images/konsol/WhatsApp\ Image\ 2025-08-30\ at\ 22.51.14\ \(4\).jpeg');">
+      <div class="showcase-content text-center" data-aos="fade-up">
+        <h2 class="display-5">Kalite ve Konfor</h2>
+        <p class="lead">Birinci sınıf kumaşlar ve ergonomik tasarımlarla duyularınızı şımartın.</p>
+      </div>
+    </section>
+    
+    <section class="cta-section text-center">
+      <div class="container" data-aos="fade-up">
+        <h2 class="display-5 mb-3">Hayalinizdeki Evi Birlikte Tasarlayalım</h2>
+        <p class="lead mb-4">Size özel çözümler ve tasarımlar hakkında bilgi almak için bizimle iletişime geçin.</p>
+        <a href="contact.html" class="btn btn-hero">Teklif Alın</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container text-center">
+        <p>&copy; 2025 Doğan Furniture. Tüm hakları saklıdır.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="products-data.js"></script>
+
+    <script>
+      AOS.init({ duration: 800, once: true });
+
+      window.addEventListener('scroll', function() {
+        if (window.innerWidth > 768) { 
+          document.querySelectorAll('.showcase').forEach(function(section) {
+            let speed = 0.4;
+            let yPos = (window.pageYOffset - section.offsetTop) * speed;
+            section.style.backgroundPosition = 'center ' + yPos + 'px';
+          });
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const productListContainer = document.getElementById('product-list');
+        if (typeof PRODUCTS !== 'undefined' && productListContainer) {
+          const productIds = Object.keys(PRODUCTS);
+          const featuredProductIds = productIds.slice(0, 4); 
+          
+          let content = '';
+          featuredProductIds.forEach((id, index) => {
+            const product = PRODUCTS[id];
+            content += `
+              <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="${index * 100}">
+                <a href="product.html?id=${product.id}" class="card-link">
+                  <div class="card h-100">
+                    <img src="${product.images[0]}" class="card-img-top" alt="${product.title}" style="height: 250px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                      <h5 class="card-title">${product.title}</h5>
+                      <p class="card-text flex-grow-1">${product.short}</p>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </div>
-          `;
-        });
-        productListContainer.innerHTML = content;
-      }
-    });
-  </script>
+                </a>
+              </div>
+            `;
+          });
+          productListContainer.innerHTML = content;
+        }
+      });
+    </script>
+  </div>
 </body>
 </html>
