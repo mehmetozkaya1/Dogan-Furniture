@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ürünler - Doğan Furniture</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .navbar {
+      transition: background-color 0.3s ease;
+    }
+
+    @media (min-width: 992px) {
+      .navbar-logo-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+      }
+      
+      .navbar-brand-centered {
+        top: 10px;
+        width: 100px;
+        height: 100px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+      .navbar-brand-centered:hover {
+        transform: scale(1.05);
+      }
+      
+      .navbar-brand-centered img {
+        height: 70px !important;
+        width: 70px !important;
+        object-fit: contain;
+        border: none;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: transparent !important;
+      }
+
+      .navbar-brand-text {
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+        letter-spacing: 0.5px;
+      }
+
+      .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .navbar-nav-left {
+        display: flex;
+        justify-content: flex-start;
+      }
+      .navbar-nav-right {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .navbar-nav .nav-item {
+        margin: 0 1rem;
+      }
+    }
+
+    .navbar-brand-mobile {
+      font-weight: 600;
+    }
+
+    .navbar-brand-mobile img {
+      height: 40px;
+      width: auto;
+      border: none;
+      padding: 0;
+      background-color: transparent;
+      margin-right: 10px !important;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-mobile d-lg-none" href="index.html">
+        <img src="logo/logo.png" alt="Doğan Furniture Logo">
+        Doğan Furniture
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="navbar-logo-container d-none d-lg-flex">
+        <a class="navbar-brand-centered" href="index.html">
+          <img src="logo/logo.png" alt="Doğan Furniture Logo">
+        </a>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav navbar-nav-left">
+          <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Ürünlerimiz</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Galeri</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <section class="hero" style="height:40vh; background-image:url('images/kanepe/IMG-20250724-WA0022.jpg');" data-aos="fade-in">
+    <div class="hero-content" data-aos="zoom-in" data-aos-delay="200">
+      <h1 class="display-5 mb-2">Ürün Kataloğu</h1>
+      <p class="lead mb-3" style="color: white;">Tüm ürünleri inceleyin, detay için karttaki 'Detay' butonuna tıklayın.</p>
+    </div>
+  </section>
+
+  <div class="separator"></div>
+
+  <section class="py-5" id="products">
+    <div class="container">
+      <h2 class="text-center mb-4">Tüm Ürünlerimiz</h2>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <input id="productSearch" type="text" class="form-control" placeholder="Ürün ara (ör. kanepe, sandalye...)">
+        </div>
+        <div class="col-md-6 text-md-end">
+          <button id="clearSearch" class="btn btn-outline-secondary">Temizle</button>
+        </div>
+      </div>
+
+      <div class="row g-4" id="productGrid" data-aos="fade-up">
+        <!-- -->
+      </div>
+    </div>
+  </section>
+
+  <div class="separator"></div>
+
+  <footer>
+    <div class="container text-center">
+      <p>&copy; 2025 Doğan Furniture</p>
+    </div>
+  </footer>
+
+  <!-- Ürün verisi -->
+  <script src="products-data.js"></script>
+
+  <script>
+    const grid = document.getElementById('productGrid');
+    const productArr = Object.values(PRODUCTS);
+
+    function createCard(p) {
+      const col = document.createElement('div');
+      col.className = 'col-md-4';
+      col.dataset.name = (p.title + ' ' + (p.slug || '') + ' ' + (p.short || '')).toLowerCase();
+
+      const card = document.createElement('div');
+      card.className = 'card h-100';
+
+      const img = document.createElement('img');
+      img.className = 'card-img-top';
+      img.src = p.images && p.images.length ? p.images[0] : 'images/placeholder.png';
+      img.alt = p.title;
+      img.style.objectFit = 'cover';
+      img.style.height = '220px';
+
+      const body = document.createElement('div');
+      body.className = 'card-body d-flex flex-column';
+
+      const h = document.createElement('h5');
+      h.className = 'card-title';
+      h.textContent = p.title;
+
+      const pEl = document.createElement('p');
+      pEl.className = 'card-text';
+      pEl.textContent = p.short || '';
+
+      const foot = document.createElement('div');
+      foot.className = 'mt-auto d-flex justify-content-between align-items-center';
+
+      const price = document.createElement('strong');
+      price.className = 'fs-5';
+      price.textContent = p.price || 'Fiyat için iletişime geçin';
+
+      const btn = document.createElement('a');
+      btn.className = 'btn btn-hero';
+      btn.href = `product.html?id=${p.id}`;
+      btn.textContent = 'Detay';
+
+      foot.appendChild(price);
+      foot.appendChild(btn);
+
+      body.appendChild(h);
+      body.appendChild(pEl);
+      body.appendChild(foot);
+
+      card.appendChild(img);
+      card.appendChild(body);
+      col.appendChild(card);
+
+      return col;
+    }
+
+    productArr.forEach(p => {
+      grid.appendChild(createCard(p));
+    });
+
+    const searchInput = document.getElementById('productSearch');
+    const clearBtn = document.getElementById('clearSearch');
+
+    function cards() { return Array.from(grid.querySelectorAll('.col-md-4')); }
+
+    searchInput.addEventListener('input', function() {
+      const q = this.value.trim().toLowerCase();
+      cards().forEach(c => {
+        const name = c.dataset.name || '';
+        c.style.display = name.includes(q) ? '' : 'none';
+      });
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      cards().forEach(c => c.style.display = '');
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script> AOS.init({ duration: 900, once: true }); </script>
+</body>
+</html>

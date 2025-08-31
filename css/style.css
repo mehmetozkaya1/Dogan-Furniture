@@ -1,0 +1,110 @@
+
+:root {
+    --color-primary: #4A90E2;
+    --color-secondary: #50E3C2;
+    --color-dark: #1A1A1A;
+    --color-light: #F7F9FC;
+}
+* { font-family: 'Poppins', sans-serif; margin:0; padding:0; box-sizing:border-box; }
+body { background-color: var(--color-light); margin-top:70px; }
+
+/* Navbar styling */
+.navbar { background-color:#fff !important; }
+.navbar-brand { color:var(--color-dark); font-weight:700; display:flex; align-items:center; }
+.navbar-brand img { height: 36px; margin-right: 10px; }
+.nav-link {
+    color:var(--color-dark) !important;
+    font-weight:500;
+    position: relative;
+    transition: color 0.3s;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--color-primary);
+    transition: width 0.3s;
+}
+.nav-link:hover {
+    color: var(--color-primary) !important;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero section */
+.hero {
+    height:100vh;
+    background:url('../images/orta_masa/IMG-20250724-WA0017.jpg') center/cover no-repeat;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+}
+.hero::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+}
+.hero-content { position:relative; z-index:1; }
+.btn-hero {
+    padding:0.8rem 2rem;
+    font-size:1.1rem;
+    font-weight:600;
+    background:linear-gradient(45deg,var(--color-primary),var(--color-secondary));
+    border:none;
+    border-radius:50px;
+    color:#fff;
+    transition:transform .3s;
+}
+.btn-hero:hover { transform:scale(1.05); }
+
+section { padding:6rem 0; }
+h2,h3 { color:var(--color-dark); font-weight:600; }
+p { color:#555; }
+
+.card {
+    border:none;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    transition:transform .4s,box-shadow .4s;
+}
+.card:hover {
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Parallax showcases */
+.showcase {
+    position:relative;
+    height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-attachment:fixed;
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    color:#fff;
+}
+.showcase::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+}
+.showcase-content { position:relative; z-index:1; max-width:600px; }
+
+.separator { height:100px; background:var(--color-light); }
+footer {
+    background-color:var(--color-dark);
+    color:#aaa;
+    padding:4rem 0;
+}

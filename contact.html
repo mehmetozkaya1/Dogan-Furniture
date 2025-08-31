@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İletişim - Doğan Furniture</title>
+
+  <!-- Fonts & Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Proje CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .navbar {
+      transition: background-color 0.3s ease;
+    }
+
+    @media (min-width: 992px) {
+      .navbar-logo-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+      }
+      
+      .navbar-brand-centered {
+        top: 10px;
+        width: 100px;
+        height: 100px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+      .navbar-brand-centered:hover {
+        transform: scale(1.05);
+      }
+      
+      .navbar-brand-centered img {
+        height: 70px !important;
+        width: 70px !important;
+        object-fit: contain;
+        border: none;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: transparent !important;
+      }
+
+      .navbar-brand-text {
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+        letter-spacing: 0.5px;
+      }
+
+      .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .navbar-nav-left {
+        display: flex;
+        justify-content: flex-start;
+      }
+      .navbar-nav-right {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .navbar-nav .nav-item {
+        margin: 0 1rem;
+      }
+    }
+
+    .navbar-brand-mobile {
+      font-weight: 600;
+    }
+
+    .navbar-brand-mobile img {
+      height: 40px;
+      width: auto;
+      border: none;
+      padding: 0;
+      background-color: transparent;
+      margin-right: 10px !important;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .contact-info-item i {
+      font-size: 1.8rem;
+      margin-right: 1rem;
+      color: #4A90E2;
+    }
+    .map-container {
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+      height: 450px;
+    }
+    .map-container iframe {
+      border: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .page-header {
+      padding: 4rem 0;
+      background-color: #f8f9fa;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-mobile d-lg-none" href="index.html">
+        <img src="logo/logo.png" alt="Doğan Furniture Logo">
+        Doğan Furniture
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="navbar-logo-container d-none d-lg-flex">
+        <a class="navbar-brand-centered" href="index.html">
+          <img src="logo/logo.png" alt="Doğan Furniture Logo">
+        </a>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav navbar-nav-left">
+          <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Ürünlerimiz</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Galeri</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Sayfa Başlığı -->
+  <div class="page-header" style="margin-top: 56px;">
+    <div class="container">
+      <h1 data-aos="fade-down">Bize Ulaşın</h1>
+      <p class="lead" data-aos="fade-down" data-aos-delay="100">Sorularınız, siparişleriniz veya teklif talepleriniz için bizimle iletişime geçebilirsiniz.</p>
+    </div>
+  </div>
+
+  <!-- Ana içerik -->
+  <section>
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <h2>İletişim Bilgileri</h2>
+          <hr class="mb-4">
+          
+          <div class="contact-info-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>
+              <strong>Adres</strong><br>
+              Önder, Ereğli Cd. No:51, 06165 Altındağ/Ankara
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <i class="bi bi-telephone-fill"></i>
+            <div>
+              <strong>Telefon</strong><br>
+              <a href="tel:+905379801610" class="text-decoration-none text-dark">+90 (537) 980 16 10</a>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <strong>E-posta</strong><br>
+              <!-- MAIL GİRİLECEK -->
+              <a href="mailto:info@doganfurniture.com" class="text-decoration-none text-dark">info@doganfurniture.com</a>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <i class="bi bi-clock-fill"></i>
+            <div>
+              <strong>Çalışma Saatleri</strong><br>
+              Hafta içi: 09:00 - 18:00<br>
+              Cumartesi: 09:00 - 15:00
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-left">
+          <h2>Konumumuz</h2>
+          <hr class="mb-4">
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5738.838742097838!2d32.909422814682834!3d39.95656868919986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d35212f8a5e305%3A0x99c0d546af07b33c!2zw5ZuZGVyLCBFcmXEn2xpIENkLiBObzo1MSwgMDYxNjUgQWx0xLFuZGHEny9BbmthcmE!5e0!3m2!1str!2str!4v1756626712315!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container text-center">
+      <p>&copy; 2025 Doğan Furniture</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script> AOS.init({ duration: 800, once: true }); </script>
+</body>
+</html>

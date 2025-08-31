@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ürün Detayı - Doğan Furniture</title>
+
+  <!-- Fonts & Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Proje CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .navbar {
+      transition: background-color 0.3s ease;
+    }
+
+    @media (min-width: 992px) {
+      .navbar-logo-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+      }
+      
+      .navbar-brand-centered {
+        top: 10px;
+        width: 100px;
+        height: 100px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+      .navbar-brand-centered:hover {
+        transform: scale(1.05);
+      }
+      
+      .navbar-brand-centered img {
+        height: 70px !important;
+        width: 70px !important;
+        object-fit: contain;
+        border: none;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: transparent !important;
+      }
+
+      .navbar-brand-text {
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+        letter-spacing: 0.5px;
+      }
+
+      .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .navbar-nav-left {
+        display: flex;
+        justify-content: flex-start;
+      }
+      .navbar-nav-right {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .navbar-nav .nav-item {
+        margin: 0 1rem;
+      }
+    }
+
+    .navbar-brand-mobile {
+      font-weight: 600;
+    }
+
+    .navbar-brand-mobile img {
+      height: 40px;
+      width: auto;
+      border: none;
+      padding: 0;
+      background-color: transparent;
+      margin-right: 10px !important;
+    }
+
+    .thumb-row {
+      display:flex;
+      gap:12px;
+      margin-top:14px;
+      overflow-x:auto;
+      padding:8px 6px;
+      -webkit-overflow-scrolling:touch;
+      align-items:center;
+    }
+    .thumb-row::-webkit-scrollbar{ height:8px; }
+    .thumb-row::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.12); border-radius:6px; }
+
+    .thumb {
+      width:120px;
+      height:86px;
+      flex:0 0 auto;
+      border-radius:10px;
+      overflow:hidden;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:#fff;
+      cursor:pointer;
+      box-shadow:0 8px 22px rgba(0,0,0,0.06);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s;
+      border:3px solid transparent;
+    }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .thumb:hover{ transform: translateY(-4px) scale(1.02); box-shadow:0 12px 30px rgba(0,0,0,0.12); }
+    .thumb.active-thumb{ border-color:#4A90E2; box-shadow:0 14px 36px rgba(74,144,226,0.14); transform: translateY(-6px) scale(1.03); }
+
+    @media (max-width:992px){ .thumb{ width:96px; height:70px; } }
+    @media (max-width:576px){ .thumb{ width:78px; height:56px; } }
+
+    #prodCarousel { overflow:hidden; border-radius:10px; }
+    #prodCarousel .carousel-inner {
+      height:520px !important;
+      overflow:hidden !important;
+    }
+    #prodCarousel .carousel-item {
+      height:100% !important;
+      -webkit-backface-visibility:hidden !important;
+      backface-visibility:hidden !important;
+    }
+    #prodCarousel .carousel-item img {
+      width:100% !important;
+      height:100% !important;
+      object-fit:cover !important;
+      border-radius:10px !important;
+      display:block !important;
+    }
+
+    #prodCarousel .carousel-item-next,
+    #prodCarousel .carousel-item-prev,
+    #prodCarousel .carousel-item.active {
+      display: block !important;
+    }
+    #prodCarousel .carousel-inner,
+    #prodCarousel .carousel-item {
+      transition: transform .6s cubic-bezier(.2,.8,.2,1) !important;
+    }
+
+    @media (max-width:992px){ #prodCarousel .carousel-inner{ height:420px !important; } }
+    @media (max-width:576px){ #prodCarousel .carousel-inner{ height:320px !important; } }
+
+    .modal-img { max-width:100%; max-height:90vh; object-fit:contain; display:block; margin:0 auto; }
+
+    .product-info h1{ margin-bottom:.4rem; }
+    #featureList li{ margin-bottom:.45rem; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-mobile d-lg-none" href="index.html">
+        <img src="logo/logo.png" alt="Doğan Furniture Logo">
+        Doğan Furniture
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="navbar-logo-container d-none d-lg-flex">
+        <a class="navbar-brand-centered" href="index.html">
+          <img src="logo/logo.png" alt="Doğan Furniture Logo">
+        </a>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav navbar-nav-left">
+          <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Ürünlerimiz</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Galeri</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Ana içerik -->
+  <section style="padding-top:6rem;">
+    <div class="container py-5" id="product-root" data-aos="fade-up">
+      <!-- -->
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body text-center position-relative">
+          <button type="button" class="btn-close btn-close-white position-absolute top-3 end-3" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          <img id="modalImage" src="" alt="" class="modal-img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container text-center">
+      <p>&copy; 2025 Doğan Furniture</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script src="products-data.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      function getParam(name) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(name);
+      }
+
+      const id = getParam('id');
+      const root = document.getElementById('product-root');
+      if (!id || !PRODUCTS[id]) {
+        root.innerHTML = '<div class="alert alert-warning">Ürün bulunamadı. <a href="products.html">Tüm ürünlere dön</a></div>';
+        return;
+      }
+
+      const p = PRODUCTS[id];
+      const images = p.images && p.images.length ? p.images : ['images/placeholder.png'];
+
+      const carouselItems = images.map((src, idx) => `
+        <div class="carousel-item ${idx === 0 ? 'active' : ''}">
+          <img src="${src}" loading="lazy" alt="${p.title} - ${idx + 1}">
+        </div>`).join('');
+
+      root.innerHTML = `
+        <div class="row g-4">
+          <div class="col-md-6">
+            <!-- DÜZELTME: Karosel kontrolünü tamamen JS'e bırakmak için 'data-bs-ride' kaldırıldı -->
+            <div id="prodCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                ${carouselItems}
+              </div>
+
+              ${images.length > 1 ? `
+              <button class="carousel-control-prev" type="button" data-bs-target="#prodCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Önceki</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#prodCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Sonraki</span>
+              </button>` : ''}
+            </div>
+
+            <div id="thumbRow" class="thumb-row"></div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="product-info">
+              <h1>${p.title}</h1>
+              <p class="lead">${p.short}</p>
+              <h3 class="text-primary">${p.price || 'Fiyat için iletişime geçin'}</h3>
+              <p>${p.desc}</p>
+              <ul id="featureList"></ul>
+              <div class="mt-4">
+                <a href="mailto:info@doganfurniture.com?subject=${encodeURIComponent(p.title + ' - Bilgi')}" class="btn btn-hero me-2">Sipariş / Bilgi Al</a>
+                <a href="products.html" class="btn btn-outline-secondary">Geri Dön</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const featureList = document.getElementById('featureList');
+      if (p.features) {
+        p.features.forEach(f => {
+          const li = document.createElement('li');
+          li.textContent = f;
+          featureList.appendChild(li);
+        });
+      }
+
+      const thumbRow = document.getElementById('thumbRow');
+      const carouselEl = document.getElementById('prodCarousel');
+      const modalImage = document.getElementById('modalImage');
+      const imgModalEl = document.getElementById('imgModal');
+      const bsModal = new bootstrap.Modal(imgModalEl);
+      const carouselInstance = bootstrap.Carousel.getOrCreateInstance(carouselEl);
+
+      images.forEach((src, idx) => {
+        const thumbWrapper = document.createElement('div');
+        thumbWrapper.className = 'thumb';
+        thumbWrapper.dataset.index = idx;
+        thumbWrapper.title = `${p.title} — Görsel ${idx + 1}`;
+        
+        const thumbImg = document.createElement('img');
+        thumbImg.src = src;
+        thumbImg.alt = `${p.title} ${idx + 1}`;
+        thumbImg.loading = 'lazy';
+        
+        thumbWrapper.addEventListener('click', () => {
+          carouselInstance.to(idx);
+        });
+        
+        thumbWrapper.addEventListener('dblclick', () => {
+          modalImage.src = src;
+          bsModal.show();
+        });
+        
+        thumbWrapper.appendChild(thumbImg);
+        thumbRow.appendChild(thumbWrapper);
+      });
+
+      function setActiveThumb(index) {
+        const thumbs = thumbRow.children;
+        for (let i = 0; i < thumbs.length; i++) {
+          thumbs[i].classList.toggle('active-thumb', i === index);
+        }
+        
+        const activeThumb = thumbs[index];
+        if (activeThumb) {
+          const scrollLeft = activeThumb.offsetLeft - (thumbRow.offsetWidth / 2) + (activeThumb.offsetWidth / 2);
+          thumbRow.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+      }
+
+      carouselEl.addEventListener('slid.bs.carousel', (event) => {
+        setActiveThumb(event.to);
+      });
+
+      carouselEl.querySelectorAll('.carousel-item img').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', () => {
+          modalImage.src = img.src;
+          bsModal.show();
+        });
+      });
+
+      setActiveThumb(0);
+
+      if (window.AOS) {
+        AOS.refresh();
+      }
+    });
+  </script>
+
+  <script>
+    if (window.AOS) {
+      AOS.init({ duration: 800, once: true });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galeri - Doğan Furniture</title>
+
+  <!-- Fonts & Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Proje CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .navbar {
+      transition: background-color 0.3s ease;
+    }
+
+    @media (min-width: 992px) {
+      .navbar-logo-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+      }
+      
+      .navbar-brand-centered {
+        top: 10px;
+        width: 100px;
+        height: 100px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+      .navbar-brand-centered:hover {
+        transform: scale(1.05);
+      }
+      
+      .navbar-brand-centered img {
+        height: 70px !important;
+        width: 70px !important;
+        object-fit: contain;
+        border: none;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: transparent !important;
+      }
+
+      .navbar-brand-text {
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+        letter-spacing: 0.5px;
+      }
+
+      .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .navbar-nav-left {
+        display: flex;
+        justify-content: flex-start;
+      }
+      .navbar-nav-right {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .navbar-nav .nav-item {
+        margin: 0 1rem;
+      }
+    }
+
+    .navbar-brand-mobile {
+      font-weight: 600;
+    }
+
+    .navbar-brand-mobile img {
+      height: 40px;
+      width: auto;
+      border: none;
+      padding: 0;
+      background-color: transparent;
+      margin-right: 10px !important;
+    }
+
+    .page-header {
+      padding: 4rem 0;
+      background-color: #f8f9fa;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.14);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    .gallery-item-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+    .gallery-item-overlay h5 {
+      color: #fff;
+      margin: 0;
+      font-weight: 600;
+      transform: translateY(10px);
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover .gallery-item-overlay h5 {
+      transform: translateY(0);
+    }
+    .modal-img { max-width:100%; max-height:90vh; object-fit:contain; display:block; margin:0 auto; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-mobile d-lg-none" href="index.html">
+        <img src="logo/logo.png" alt="Doğan Furniture Logo">
+        Doğan Furniture
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="navbar-logo-container d-none d-lg-flex">
+        <a class="navbar-brand-centered" href="index.html">
+          <img src="logo/logo.png" alt="Doğan Furniture Logo">
+        </a>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav navbar-nav-left">
+          <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Ürünlerimiz</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Galeri</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Sayfa Başlığı -->
+  <div class="page-header" style="margin-top: 56px;">
+    <div class="container">
+      <h1 data-aos="fade-down">Ürün Galerisi</h1>
+      <p class="lead" data-aos="fade-down" data-aos-delay="100">Tüm ürünlerimize ait görselleri burada bulabilirsiniz.</p>
+    </div>
+  </div>
+
+  <!-- Ana içerik -->
+  <section class="container py-5">
+    <div class="row" id="gallery-grid">
+      <!-- -->
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body text-center position-relative">
+          <button type="button" class="btn-close btn-close-white position-absolute top-3 end-3" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          <img id="modalImage" src="" alt="Galeri Görseli" class="modal-img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container text-center">
+      <p>&copy; 2025 Doğan Furniture</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script src="products-data.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const galleryGrid = document.getElementById('gallery-grid');
+      const modalImage = document.getElementById('modalImage');
+      const imgModal = new bootstrap.Modal(document.getElementById('imgModal'));
+
+      if (typeof PRODUCTS === 'undefined' || !galleryGrid) {
+        console.error("PRODUCTS verisi veya galeri alanı bulunamadı.");
+        return;
+      }
+      
+      let htmlContent = '';
+      for (const productId in PRODUCTS) {
+        const product = PRODUCTS[productId];
+        if (product.images && product.images.length > 0) {
+          product.images.forEach(imageUrl => {
+            htmlContent += `
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="gallery-item" data-aos="fade-up" data-image-src="${imageUrl}" data-title="${product.title}">
+                  <img src="${imageUrl}" alt="${product.title}" loading="lazy">
+                  <div class="gallery-item-overlay">
+                    <h5>${product.title}</h5>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+        }
+      }
+
+      galleryGrid.innerHTML = htmlContent;
+
+      galleryGrid.addEventListener('click', (event) => {
+        const galleryItem = event.target.closest('.gallery-item');
+        if (galleryItem) {
+          const imageSrc = galleryItem.dataset.imageSrc;
+          const imageTitle = galleryItem.dataset.title;
+          modalImage.src = imageSrc;
+          modalImage.alt = imageTitle;
+          imgModal.show();
+        }
+      });
+      
+      AOS.init({ duration: 800, once: true });
+    });
+  </script>
+</body>
+</html>
